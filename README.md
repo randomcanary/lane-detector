@@ -63,8 +63,8 @@ The function **find_lines_v1** performs these functions. I fit to a second-order
 
 ### Pipeline code details 
 The wrapper pipeline function is img_pipeline.
-A. The undistortion, thresholding and perspective transform of the image is done in **preprocess_image**. 
-B. Lane-finding by polynomial fit and sliding-window methods are then applied through **find_lane_lines_v1**.
-C. We compute radius of curvature from **get_curvature_v2**.
-D. The final result is projected on the undistorted image from **warp_lane_lines**. 
-E. The variable **result_old** keeps the processed image of a previous frame of the video, and uses this, should the next image be mis-shaped. This is a quick hack for a few problematic frames in my processed video. This is piped into the moviepy image pipeline. 
+* A. The undistortion, thresholding and perspective transform of the image is done in **preprocess_image**. 
+* B. Lane-finding by polynomial fit and sliding-window methods are then applied through **find_lane_lines_v1**.
+* C. We compute radius of curvature from **get_curvature_v2**.
+* D. The final result is projected on the undistorted image from **warp_lane_lines**. 
+* E. The variable **result_old** keeps the processed image of a previous frame of the video, and uses this, should the next image be mis-shaped. This is a quick hack for a few problematic frames in my processed video. This is piped into the moviepy image pipeline. 
