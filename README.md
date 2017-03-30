@@ -1,6 +1,6 @@
 ##
 
-## Lane detector 
+## Lane Detector : Advanced Lane Finding in road videos
 ### Preet Singh
 This repository contains my work on Udacity’s Advanced Lane Finding project in their Self-Driving Car program. The problem being solved is to try and detect lane lines in a vehicle-dashboard-cam video of the road. We have to detect the lanes despite issues with lighting, curvature of the road, and background color, among others. Understandably, this requires multiple levels of image processing. The notebook P4-Advanced_Lane-Lines.ipynb  contains the code for an image processing pipeline that takes in a video file, extracts images from it, and processes each image in the following manner:
 * Undistorts each image, 
@@ -30,21 +30,20 @@ In the code I’ve computed corners of a 9 x 6 chessboard (camera) image (and he
 
 ### Pipeline steps
 
-I Raw to undistorted : 
-I applied the previously saved camera calibration matrix and distortion coefficients to undistorted the image. 
+#### I Raw to undistorted : 
+Applying the previously saved camera calibration matrix and distortion coefficients to undistort the image. 
 #### Image example 
 ![undistort2](images/original2undistorted.png)
 
 
-II Undistorted to thresholded:
-I used different ways of Sobel thresholding in logical combination to obtained a final thresholded output. Refer to the section “Different ways of Sobel Thresholding” in the notebook, or images after this section.  
+#### II Undistorted to thresholded:
+Different Sobel thresholdings in logical combination to obtained a final thresholded output. 
 
 #### Image example
 ![undistorted to thresholded](images/undistorted2thresholded.png)
 
-III Combined thresholded to perspective transformed:
-I used a manual set of source and destination points to transform the perspective of the image to a bird-eye view. I originally experimented using Harris Corner detection to find corner points, but the results were less than satisfactory. The manual set of points was taken from the example writeup provided with this project. The forums recommended this as well. 
-
+#### III Combined thresholded to perspective transformed:
+Using a manual set of source and destination points, the pipeline transforms the perspective of the image to a bird-eye view. I originally experimented using Harris Corner detection to find corner points, but the results were less than satisfactory, feel free to try automatic corner detection algorithms. 
 #### Image example
 ![combined](images/combined_thresholded2perspective_xformed.png)
 
@@ -56,7 +55,10 @@ The images are converted to HLS. The pipeline takes in input from the S channel 
 ### Post-image processing: Lane-line pixels and fit their positions with a polynomial:
 The function **find_lines_v1** performs these functions. I fit to a second-order polynomial and use the sliding-windows method to detect (curved) lane lines. 
 #### Output:
-![polynomial](find_lane_lines.png)
+![polynomial](images/find_lane_lines.png)
+
+#### Final image example
+![final](images/final_result.png) 
 
 
 ### Pipeline code details 
